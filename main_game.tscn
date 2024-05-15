@@ -10,10 +10,11 @@ script = ExtResource("1_hicpb")
 
 [node name="KlaskBoard" parent="." instance=ExtResource("1_mk288")]
 
-[node name="Striker" parent="." instance=ExtResource("2_04qn3")]
-position = Vector2(200, 520)
-
 [node name="Ball" parent="." instance=ExtResource("4_c5vit")]
 position = Vector2(191, 358)
 
+[node name="Striker" parent="." instance=ExtResource("2_04qn3")]
+position = Vector2(200, 520)
+
 [connection signal="player_left_area" from="KlaskBoard" to="." method="_on_klask_board_player_left_area"]
+[connection signal="body_entered" from="Ball" to="." method="_on_ball_body_entered"]

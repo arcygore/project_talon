@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Striker
 
 @export var speed = 1000
+@export var push_force = 100
 
 var mouse_pos
 var viewport_x
@@ -17,6 +18,11 @@ func _physics_process(delta):
 	position = position.clamp(Vector2(15,viewport_y/2), Vector2(viewport_x + 15, viewport_y))
 	mouse_pos = get_global_mouse_position()
 	velocity = speed*delta*(mouse_pos-position)
+	# Following for loop from "https://kidscancode.org/godot_recipes/4.x/physics/character_vs_rigid/index.html"
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 	move_and_slide()
 	
 func reset_position(location):

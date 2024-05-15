@@ -23,11 +23,11 @@ color = Color(0, 0.180392, 0.592157, 1)
 position = Vector2(200, 455)
 shape = SubResource("RectangleShape2D_v8hae")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="BoardWalls" type="StaticBody2D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_ssdl3")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BoardWalls"]
 position = Vector2(0, 310)
-polygon = PackedVector2Array(0, 1, 1, 297, 399, 297, 400, 1, 416, 1, 416, 308, -20, 308, -20, 1)
+polygon = PackedVector2Array(0, -310, 400, -310, 400, 1, 416, 1, 416, -327, -35, -328, -32, 352, 432, 347, 426, 1, 400, 1, 400, 290, 0, 290)
 
 [connection signal="body_exited" from="PlayArea" to="." method="_on_play_area_body_exited"]
