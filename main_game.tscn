@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://3hgnt81wcx06"]
+
+[ext_resource type="Script" path="res://main_game.gd" id="1_hicpb"]
+[ext_resource type="PackedScene" uid="uid://nl6pir4b4ct4" path="res://klask_board.tscn" id="1_mk288"]
+[ext_resource type="PackedScene" uid="uid://dhdrtsxwvbmm2" path="res://striker.tscn" id="2_04qn3"]
+[ext_resource type="PackedScene" uid="uid://boe425xsqa4wc" path="res://ball.tscn" id="4_c5vit"]
+
+[node name="MainGame" type="Node"]
+script = ExtResource("1_hicpb")
+
+[node name="KlaskBoard" parent="." instance=ExtResource("1_mk288")]
+
+[node name="Striker" parent="." instance=ExtResource("2_04qn3")]
+position = Vector2(200, 520)
+
+[node name="Ball" parent="." instance=ExtResource("4_c5vit")]
+position = Vector2(191, 358)
+
+[connection signal="player_left_area" from="KlaskBoard" to="." method="_on_klask_board_player_left_area"]

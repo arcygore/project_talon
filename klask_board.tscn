@@ -1,8 +1,33 @@
-[gd_scene format=3 uid="uid://nl6pir4b4ct4"]
+[gd_scene load_steps=4 format=3 uid="uid://nl6pir4b4ct4"]
 
-[node name="KlaskBoard" type="CanvasLayer"]
+[ext_resource type="Script" path="res://klask_board.gd" id="1_khvj1"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8hae"]
+size = Vector2(400, 290)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ssdl3"]
+friction = 0.3
+bounce = 1.0
+
+[node name="KlaskBoard" type="Node2D"]
+script = ExtResource("1_khvj1")
+
+[node name="BoardBackground" type="ColorRect" parent="."]
 offset_right = 400.0
 offset_bottom = 600.0
 color = Color(0, 0.180392, 0.592157, 1)
+
+[node name="PlayArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea"]
+position = Vector2(200, 455)
+shape = SubResource("RectangleShape2D_v8hae")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_ssdl3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(0, 310)
+polygon = PackedVector2Array(0, 1, 1, 297, 399, 297, 400, 1, 416, 1, 416, 308, -20, 308, -20, 1)
+
+[connection signal="body_exited" from="PlayArea" to="." method="_on_play_area_body_exited"]
